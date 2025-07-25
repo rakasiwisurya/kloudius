@@ -88,7 +88,7 @@ npm run ios
 ## 📂 Folder Structure
 
 ```
-your-project/
+kloudius/
 ├── assets/              # Images, fonts (this project no font setup), etc.
 ├── src/
 │   ├── components/      # Reusable components
