@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "Kloudius",
+    "displayName": "Kloudius",
     "slug": "Kloudius",
     "version": "1.0.0",
     "orientation": "portrait",

@@ -1,20 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+import {
+  MD3LightTheme as DefaultTheme,
+  MD2Colors,
+  PaperProvider,
+} from "react-native-paper";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { Provider } from "react-redux";
+import store from "./src/redux/app/store";
+import Router from "./src/router";
+import FlashMessage from "react-native-flash-message";
 
-export default function App() {
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: MD2Colors.red500,
+  },
+};
+
+function MainApp() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <PaperProvider theme={theme}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <NavigationContainer>
+            <StatusBar style="auto" />
+            <Router />
+          </NavigationContainer>
+          <FlashMessage position="bottom" floating />
+        </SafeAreaView>
+      </PaperProvider>
+    </SafeAreaProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <Provider store={store}>
+      <MainApp />
+    </Provider>
+  );
+}
