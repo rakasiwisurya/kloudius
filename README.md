@@ -8,14 +8,14 @@ This is a React Native project using **Expo**. It’s configured for development
 
 Ensure the following tools and versions are installed on your system:
 
-| Tool              | Version               |
-| ----------------- | --------------------- |
-| Node.js           | `>= 20.x`             |
-| npm               | `>= 8.x`              |
-| Java              | `17`                  |
-| Android Studio    | Electric Eel or newer |
-| Android Emulator  | API Level `35.0`      |
-| Expo CLI (global) | `^6.x`                |
+| Tool              | Version            |
+| ----------------- | ------------------ |
+| Node.js           | `>= 20.x`          |
+| npm               | `>= 8.x`           |
+| Java              | `17`               |
+| Android Studio    | Narwhal (2025.1.1) |
+| Android Emulator  | API Level `35.0`   |
+| Expo CLI (global) | `^6.x`             |
 
 ---
 
