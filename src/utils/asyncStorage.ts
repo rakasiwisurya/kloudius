@@ -4,7 +4,7 @@ export const asyncStorage = {
   getItem: async (key: string) => {
     try {
       const value = await AsyncStorage.getItem(key);
-      if (value) return JSON.parse(value);
+      if (value) return JSON.parse(JSON.parse(value));
     } catch (error) {
       return null;
     }

@@ -1,16 +1,79 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigation } from "@react-navigation/native";
-import { notification } from "../../utils/notification";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useAppDispatch } from "../../hooks/redux";
+import { setUser } from "../../redux/features/authSlice";
+import { FormDataLogin, schemaLogin } from "../../types/login";
+import { asyncStorage } from "../../utils/asyncStorage";
+import { notification } from "../../utils/notification";
 
 const useLogin = () => {
   const navigate = useNavigation<NativeStackNavigationProp<any>>();
 
-  const onSubmit = () => {
-    // notification.error("Something went wrong");
+  const [isSecureText, setIsSecureText] = useState(true);
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormDataLogin>({
+    resolver: zodResolver(schemaLogin),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const onToggleSecureText = () => {
+    setIsSecureText((prevState) => !prevState);
+  };
+
+  const onSubmit = async (values: FormDataLogin) => {
+    const data = JSON.stringify(values);
+
+    setIsSubmitLoading(true);
+
+    try {
+      const dbData = await asyncStorage.getItem("db");
+
+      delete dbData.name;
+
+      const isValid = data === JSON.stringify(dbData);
+
+      if (!isValid) return notification.error("Incorrect credentials");
+
+      await asyncStorage.setItem("user", data);
+      notification.success("Success login");
+      reset();
+      dispatch(setUser(values));
+    } catch (error) {
+      const { message } = error as Error;
+      notification.error(message);
+    } finally {
+      setIsSubmitLoading(false);
+    }
+  };
+
+  const onGoToSignUp = () => {
     navigate.replace("SignUp");
   };
 
-  return { onSubmit };
+  return {
+    control,
+    errors,
+    isSecureText,
+    isSubmitLoading,
+    handleSubmit,
+    onToggleSecureText,
+    onSubmit,
+    onGoToSignUp,
+  };
 };
 
 export default useLogin;

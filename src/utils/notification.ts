@@ -17,7 +17,7 @@ export const notification = {
   },
   error: (message: string) => {
     showMessage({
-      message: "Error",
+      message: "Failed",
       description: message,
       type: "danger",
     });
