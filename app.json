@@ -2,7 +2,7 @@
   "expo": {
     "name": "Kloudius",
     "displayName": "Kloudius",
-    "slug": "Kloudius",
+    "slug": "kloudius",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,17 +14,25 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "buildNumber": "1",
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.rakasiwisurya.kloudius"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9301ac95-1e5d-492c-9267-a151a561542f"
+      }
     }
   }
 }
