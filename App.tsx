@@ -10,12 +10,15 @@ import { Provider } from "react-redux";
 import store from "./src/redux/app/store";
 import Router from "./src/router";
 import FlashMessage from "react-native-flash-message";
+import { View } from "react-native";
 
 const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: MD2Colors.red500,
+    primary: MD2Colors.red800,
+    secondaryContainer: MD2Colors.red800,
+    onSecondaryContainer: MD2Colors.white,
   },
 };
 
@@ -24,11 +27,13 @@ function MainApp() {
     <SafeAreaProvider>
       <PaperProvider theme={theme}>
         <SafeAreaView style={{ flex: 1 }}>
-          <NavigationContainer>
+          <View style={{ flex: 1 }}>
             <StatusBar style="auto" />
-            <Router />
-          </NavigationContainer>
-          <FlashMessage position="bottom" floating />
+            <NavigationContainer>
+              <Router />
+            </NavigationContainer>
+            <FlashMessage position="top" floating />
+          </View>
         </SafeAreaView>
       </PaperProvider>
     </SafeAreaProvider>

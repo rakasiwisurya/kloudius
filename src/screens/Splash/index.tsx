@@ -1,17 +1,21 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
-const Loading = () => {
+const Splash = () => {
   return (
     <View style={styles.wrapper}>
-      <ActivityIndicator animating={true} color={MD2Colors.red500} />
-      <Text style={styles.text}>Loading...</Text>
+      <Image
+        source={require("../../../assets/icon.png")}
+        style={styles.image}
+        resizeMode="contain"
+      />
+      <ActivityIndicator animating={true} color={MD2Colors.red800} />
     </View>
   );
 };
 
-export default Loading;
+export default Splash;
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -23,9 +27,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  text: {
-    fontSize: 18,
-    color: MD2Colors.red500,
-    marginTop: 16,
+  image: {
+    width: 150,
+    height: 150,
   },
 });
