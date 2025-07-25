@@ -17,4 +17,20 @@ export const asyncStorage = {
       return false;
     }
   },
+  removeItem: async (key: string) => {
+    try {
+      await AsyncStorage.removeItem(key);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  },
+  clear: async () => {
+    try {
+      await AsyncStorage.clear();
+      return true;
+    } catch (error) {
+      return false;
+    }
+  },
 };

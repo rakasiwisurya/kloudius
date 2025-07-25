@@ -42,16 +42,19 @@ const useLogin = () => {
     try {
       const dbData = await asyncStorage.getItem("db");
 
-      delete dbData.name;
+      const newDBData = {
+        email: dbData.email,
+        password: dbData.password,
+      };
 
-      const isValid = data === JSON.stringify(dbData);
+      const isValid = data === JSON.stringify(newDBData);
 
       if (!isValid) return notification.error("Incorrect credentials");
 
-      await asyncStorage.setItem("user", data);
+      await asyncStorage.setItem("user", dbData);
       notification.success("Success login");
       reset();
-      dispatch(setUser(values));
+      dispatch(setUser(dbData));
     } catch (error) {
       const { message } = error as Error;
       notification.error(message);
